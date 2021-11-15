@@ -1,0 +1,19 @@
+{
+  "name": "nitcquerywebsite",
+  "version": "1.0.0",
+  "description": "Website meant for NITC students to ask their queries publicly and get them resolved by the answers from other students",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "QueryWebsite"
+  ],
+  "author": "BCS19_G11",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
