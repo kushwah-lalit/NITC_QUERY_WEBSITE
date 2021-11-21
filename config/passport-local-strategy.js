@@ -21,8 +21,13 @@ passport.use(new LocalStrategy({
                 console.log("Wrong Password");
                 return done(null,false);
             }else{
-                console.log(result[0]);
-                return done(null,result[0]);
+                if(result[0].isverified==1){
+                    console.log(result[0]);
+                    return done(null,result[0]);
+                }else{
+                    return done(null,false);
+                }
+                
             }
         });
     }

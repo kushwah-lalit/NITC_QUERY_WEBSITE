@@ -1,4 +1,8 @@
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
+const crypto = require('crypto');
 const mysqlConnection = require('../connection');
+const router = require('../routes/user');
 module.exports.signUp = function(req, res){
     if (req.isAuthenticated()){
         return res.redirect('/');
@@ -34,14 +38,37 @@ module.exports.create = function(req, res){
             let post = {rollnum:req.body.rollnum,
                         name:req.body.name,
                         email:req.body.email,
-                        password:req.body.password
+                        password:req.body.password,
+                        emailtoken:crypto.randomBytes(64).toString('hex')
             };
-            mysqlConnection.query(sql,post,(err,result)=>{
+            mysqlConnection.query(sql,post,async function(err,result){
                 if(err){
                     console.log('User not created :: Error :',err);
                     return;
                 }else{
-                    return res.redirect('/users/sign-in');
+                    const msg = {
+                        to: post.email, // Change to your recipient
+                        from: 'projectmailer.tester@gmail.com', // Change to your verified sender
+                        subject: 'Welcome to NITC Query Website - Verify your Email',
+                        text: `Hello Thanks to reqister to our website.
+                        Please copy and paste the address below to verify your account.
+                        http://${req.headers.host}/verify-email?token=${post.emailtoken}`,
+                        html: `<h1>Hello! Welcome to NITC Query Website</h1>
+                        <p>Thanks for Registering</p>
+                        <p>Please click the below link to verify your account</p>
+                        <a href="http://${req.headers.host}/users/verify-email?token=${post.emailtoken}">Verify Account</a>
+                        `,
+                      }
+                      try{
+                        await sgMail.send(msg);
+                        return res.redirect('/users/sign-in');
+                      }catch(err){
+                          console.log(`Error on mail sendig : ${err}`);
+                          return res.redirect('users/sign-up');
+
+                      }
+                    
+                    
                 }
 
             });
@@ -50,7 +77,22 @@ module.exports.create = function(req, res){
         }
     });
 }
+module.exports.verifyEmail = function(req,res){
+    mysqlConnection.query("SELECT * from user where emailtoken = ?",[req.query.token],(err,result)=>{
+        if(err){
+            console.log(`Error on searchinh user: verfiy email stage::${err}`);
 
+        }
+        if(result.length==0){
+            console.log(`Cant verify as token is invalid`);
+            return res.redirect('/users/sign-up');
+        }else{
+            mysqlConnection.query('UPDATE user SET ? WHERE emailtoken = ?',[{emailtoken:null,isverified:1},req.query.token]);
+            return res.redirect('/users/sign-in');
+        }
+    });
+
+};
 
 // // sign in and create a session for the user
 module.exports.createSession = function(req, res){

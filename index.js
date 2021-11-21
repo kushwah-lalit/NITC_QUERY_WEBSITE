@@ -9,7 +9,34 @@ const port = 8000;
 const session = require('express-session');
 const passport =require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
+const crypto = require('crypto');
 
+/////////////
+// const msg = {
+//     to: 'test@example.com', // Change to your recipient
+//     from: 'test@example.com', // Change to your verified sender
+//     subject: 'Sending with SendGrid is Fun',
+//     text: 'and easy to do anywhere, even with Node.js',
+//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+//   }
+//   sgMail
+//     .send(msg)
+//     .then(() => {
+//       console.log('Email sent')
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     })
+
+
+
+
+
+
+
+/////////////////
 // const expressLayouts = require('express-ejs-layouts');
 // app.use(expressLayouts);
 // app.set('layout extractStyles',true);
