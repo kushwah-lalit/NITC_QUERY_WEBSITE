@@ -24,7 +24,7 @@ module.exports.signIn = function(req, res){
 module.exports.create = function(req, res){
     // TODO later
     if(req.body.password!=req.body.confirm){
-        // req.flash('error', 'Passwords do not match');
+        req.flash('error', 'Passwords do not match');
         return res.redirect('back');
     }
     mysqlConnection.query("SELECT * from user where rollnum = ?",[req.body.rollnum],(err,result)=>{
@@ -61,9 +61,11 @@ module.exports.create = function(req, res){
                       }
                       try{
                         await sgMail.send(msg);
+                        req.flash('success','Signed Up Successfully : Verify Email ID on registered email to Sign In');
                         return res.redirect('/users/sign-in');
                       }catch(err){
                           console.log(`Error on mail sendig : ${err}`);
+                          req.flash('error','Verification mail cannot be sent contact Admin');
                           return res.redirect('users/sign-up');
 
                       }
@@ -80,7 +82,7 @@ module.exports.create = function(req, res){
 module.exports.verifyEmail = function(req,res){
     mysqlConnection.query("SELECT * from user where emailtoken = ?",[req.query.token],(err,result)=>{
         if(err){
-            console.log(`Error on searchinh user: verfiy email stage::${err}`);
+            console.log(`Error on searching user: verfiy email stage::${err}`);
 
         }
         if(result.length==0){
@@ -88,6 +90,7 @@ module.exports.verifyEmail = function(req,res){
             return res.redirect('/users/sign-up');
         }else{
             mysqlConnection.query('UPDATE user SET ? WHERE emailtoken = ?',[{emailtoken:null,isverified:1},req.query.token]);
+            req.flash('success','Successfully Verified');
             return res.redirect('/users/sign-in');
         }
     });
@@ -96,12 +99,12 @@ module.exports.verifyEmail = function(req,res){
 
 // // sign in and create a session for the user
 module.exports.createSession = function(req, res){
-    // req.flash('success', 'Logged in Successfully');
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 // signout
 module.exports.destroySession = function(req, res){
     req.logout();
-    // req.flash('success', 'You have logged out!');
+    req.flash('success', 'You have logged out!');
     return res.redirect('/users/sign-in');
 }

@@ -1,6 +1,9 @@
 <html>
     <head>
         <link rel ="icon" href='/images/logo.png' type = "image/x-icon" sizes="32x32" >
+        <!-- cdn for noty -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
         <title>
             <%= title %>
         </title>
@@ -10,6 +13,29 @@
         <%if(locals.user){%>
         <a href="/users/sign-out">Sign-out</a>
         <%}%>
+        <script>
+            <% if (flash.success && flash.success.length > 0) {%>
+                new Noty({
+                    theme: 'sunset',
+                    text: "<%= flash.success %>",
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 1500
+                    
+                }).show();    
+            <%} %>
+        
+            <% if (flash.error && flash.error.length > 0) {%>
+                new Noty({
+                    theme: 'sunset',
+                    text: "<%= flash.error %>",
+                    type: 'error',
+                    layout: 'topRight',
+                    timeout: 1500
+                    
+                }).show();    
+            <%} %>
+        </script>
     </body>
 
 </html>

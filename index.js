@@ -12,31 +12,10 @@ const passportLocal = require('./config/passport-local-strategy');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 const crypto = require('crypto');
-
-/////////////
-// const msg = {
-//     to: 'test@example.com', // Change to your recipient
-//     from: 'test@example.com', // Change to your verified sender
-//     subject: 'Sending with SendGrid is Fun',
-//     text: 'and easy to do anywhere, even with Node.js',
-//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-//   }
-//   sgMail
-//     .send(msg)
-//     .then(() => {
-//       console.log('Email sent')
-//     })
-//     .catch((error) => {
-//       console.error(error)
-//     })
+const flash = require('connect-flash');
+const customMiddleware = require('./config/middleware');
 
 
-
-
-
-
-
-/////////////////
 // const expressLayouts = require('express-ejs-layouts');
 // app.use(expressLayouts);
 // app.set('layout extractStyles',true);
@@ -62,6 +41,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMiddleware.setFlash);
 app.use('/',require('./routes/index'));
 app.listen(port,function(err){
     if(err){
