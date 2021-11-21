@@ -25,20 +25,6 @@ passport.use(new LocalStrategy({
                 return done(null,result[0]);
             }
         });
-
-        // User.findOne({email:email},function(err,user){
-        //     if(err){
-        //         // console.log('Error in finding the user :: Passport');
-        //         // req.flash('error', err);
-        //         return done(err);
-        //     }
-        //     if(!user||user.password!=password){
-        //         // console.log('Invalid User or password');
-        //         // req.flash('error', 'Invalid Username/Password');
-        //         return done(null,false);
-        //     }
-        //     return done(null,user);
-        // });
     }
 ));
 // serializing the user to decide which kep to be stored in the cokkie and encripted
