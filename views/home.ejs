@@ -3,8 +3,8 @@
     <script src='/js/home.js'></script>
 
     <% if(locals.user){ %>
-   <form action="/question/create" class="entry">
-        <input type="text" placeholder="Ask Anything..." class="write-something-entry">
+   <form action="/question/create" class="entry" method="post">
+        <input type="text" name="content"placeholder="Ask Anything..." class="write-something-entry">
         <button class="enter" >Ask Question</button>
     </form>
 
@@ -13,7 +13,8 @@
    
 
 
-    <div class="container">
+
+        <div class="container">
         <div class="response-group">
             <header>
                 <h2>
@@ -27,7 +28,8 @@
                 <h1 class="response__title">When will we go back to NITC?</h1>
                 <div class="post-group">
 
-                    <div class="post" >
+           
+                        <div class="post">
                         <div class="post__avatar">
                         </div>
                         <h3 class="post__author">Pasa Bhai</h3>
@@ -38,8 +40,10 @@
 
                     <% if(locals.user){ %>
                     <form action="/answer/create">
-                       <input type="text" placeholder="Answer..." class="post__actions"><button class="enter" id="special_button">Post</button>
-
+                       <input type="text" placeholder="Answer..." name="content" class="post__actions">
+              
+                       <input type="hidden" name="post">
+                       <button class="enter" id="special_button">Post</button>
                     </form>
                     <% } %>
                     
