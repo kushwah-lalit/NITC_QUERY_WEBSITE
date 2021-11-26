@@ -8,7 +8,7 @@ module.exports.signUp = function(req, res){
         return res.redirect('/');
     }
 
-    return res.render('signup');
+    return res.render('signup',{title: 'Sign Up'});
 }
 
 
@@ -17,7 +17,7 @@ module.exports.signIn = function(req, res){
     if (req.isAuthenticated()){
         return res.redirect('/');
     }
-    return res.render('login');
+    return res.render('login',{title: 'Sign In'});
 }
 
 // // get the sign up data
