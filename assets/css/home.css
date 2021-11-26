@@ -437,7 +437,7 @@ body {
     background: none;
     color: white;
     border: 2px solid;
-    padding: 0.5em 1em;
+    padding: 0.5rem;
     font-size: 1em;
     transition: color 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
     max-width: 80px;
