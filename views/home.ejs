@@ -2,13 +2,16 @@
 <script src='/js/home.js'></script>
 
 <% if(locals.user){ %>
-    <form action="/question/create" class="entry" method="post">
-        <input type="text" name="content" placeholder="Ask Anything..." class="write-something-entry">
+    <form action="/question/create" class="entry" method="post" style="width: 90%;max-width: 900px;margin: 50px auto 100px;margin-top:8rem;">
+        <input type="text" name="content" placeholder="Ask Anything..." style="width:100%;max-width: 900px;" class="write-something-entry">
         <button class="enter">Ask Question</button>
     </form>
 
     <% } %>
-
+        <% if(!locals.user){ %> 
+        <br>
+        <br>
+        <%}%>
         <% var d = new Date(); %>
         <%if(userData.length!=0){
         var i=1;
@@ -69,7 +72,7 @@
                                                             <input type="text" placeholder="Answer..." name="content" class="post__actions">
 
                                                             <input type="hidden" name="post" value='<%= data.Question_id%>'>
-                                                            <button class="enter" id="special_button" style="width:200px;">Answer</button>
+                                                            <button class="enter" id="special_button" style="width:130px;background-color: #212529;">Answer</button>
                                                         </form>
                                                         <% } %>
 

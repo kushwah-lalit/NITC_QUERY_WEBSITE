@@ -421,7 +421,6 @@ body {
     } */
 
 .write-something-entry {
-    width: 500px;
     height: 150px;
     display: block;
     margin: 0 auto;
@@ -430,6 +429,7 @@ body {
     /* border: 3px solid whitesmoke;
     border-radius: 3%;
     border-bottom: none; */
+    padding: 1rem;
     border: none;
 }
 
@@ -440,7 +440,7 @@ body {
     padding: 0.5rem;
     font-size: 1em;
     transition: color 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-    max-width: 80px;
+    max-width: 300px;
     margin: 6px auto;
 }
 
