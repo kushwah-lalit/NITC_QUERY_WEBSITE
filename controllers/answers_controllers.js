@@ -7,7 +7,8 @@ module.exports.create = async function(req, res){
                         Question_id:req.body.post,
                         Roll_Number:req.user.rollnum,
                         Content:req.body.content,
-                        Creation_datetime:new Date()
+                        Creation_datetime:new Date(),
+                        Name:req.user.name
             };
             mysqlConnection.query(sql,post,async function(err,result){
                 if(err){

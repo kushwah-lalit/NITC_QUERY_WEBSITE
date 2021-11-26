@@ -1,53 +1,83 @@
+<link rel="stylesheet" href='/css/home.css'>
+<script src='/js/home.js'></script>
 
-    <link rel="stylesheet" href='/css/home.css'>
-    <script src='/js/home.js'></script>
-
-    <% if(locals.user){ %>
-   <form action="/question/create" class="entry" method="post">
-        <input type="text" name="content"placeholder="Ask Anything..." class="write-something-entry">
-        <button class="enter" >Ask Question</button>
+<% if(locals.user){ %>
+    <form action="/question/create" class="entry" method="post">
+        <input type="text" name="content" placeholder="Ask Anything..." class="write-something-entry">
+        <button class="enter">Ask Question</button>
     </form>
 
     <% } %>
 
-   
+        <% var d = new Date(); %>
+        <%if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){%>
+                <div class="container">
+                    <div class="response-group">
+                        <header>
+                            <h2>
+                                <strong><%= data.Name%> | </strong>
+                                <strong> <%= data.Roll_Number%></strong>
+                                <i class="fa fa-angle-right">
+                    </i><span><%= data.Creation_datetime %></span>
+                            </h2>
+                        </header>
+                        <div class="response">
+                            <div class="response__number">
+                                <%= i%>
+                            </div>
+                            <h1 class="response__title">
+                                <%= data.Content%>
+                            </h1>
+                            <%if(answer.length!=0){
+                            var j=1;
+                            answer.forEach(function(dat){ 
+                            %>
+                            <%if(dat.Question_id == data.Question_id){%>
+                                    <div class="post-group">
 
 
+                                        <div class="post">
+                                            <div class="post__avatar">
+                                            </div>
+                                            <h3 class="post__author">
+                                                <%=dat.Name%>
+                                                <span> | </span>
+                                                <%=dat.Roll_Number%>
+                                            </h3>
+                                            
+                                            <h4 class="post__timestamp">
+                                                <%=dat.Creation_datetime%>
+                                            </h4>
+                                            <p class="post__body">
+                                                <%=dat.Content%>
+                                            </p>
 
-        <div class="container">
-        <div class="response-group">
-            <header>
-                <h2>
-                    <strong>Questioner</strong>
-                    <i class="fa fa-angle-right">
-                    </i><span>Roll No.</span>
-                </h2>
-            </header>
-            <div class="response">
-                <div class="response__number">1</div>
-                <h1 class="response__title">When will we go back to NITC?</h1>
-                <div class="post-group">
+                                        </div>
+                                    </div>
+                                    <%}%>
 
-           
-                        <div class="post">
-                        <div class="post__avatar">
+                                        <%j++;})%>
+                                            <% }else{ %>
+                                                <h2>No Answers Found :(</h2>
+                                                <%}%>
+
+
+                                                    <% if(locals.user){ %>
+                                                        <form action="/answer/create" method="post" style="margin-left:3.5rem;">
+                                                            <input type="text" placeholder="Answer..." name="content" class="post__actions">
+
+                                                            <input type="hidden" name="post" value='<%= data.Question_id%>'>
+                                                            <button class="enter" id="special_button" style="width:200px;">Answer</button>
+                                                        </form>
+                                                        <% } %>
+
                         </div>
-                        <h3 class="post__author">Pasa Bhai</h3>
-                        <h4 class="post__timestamp">Oct 13 at 8:51pm </h4>
-                        <p class="post__body">Sapne mein bhai</p>
-
                     </div>
-
-                    <% if(locals.user){ %>
-                    <form action="/answer/create">
-                       <input type="text" placeholder="Answer..." name="content" class="post__actions">
-              
-                       <input type="hidden" name="post">
-                       <button class="enter" id="special_button">Post</button>
-                    </form>
-                    <% } %>
-                    
                 </div>
-            </div>
-        </div>
-    </div>
+                </div>
+                <%i++;})%>
+                    <% }else{ %>
+                        <h1 >No Question Asked :(</h1>
+                        <%}%>
