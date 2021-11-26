@@ -465,3 +465,9 @@ body {
 #special_button {
     margin-left: 10px;
 }
+.del{
+    color: whitesmoke;
+}
+.del:hover{
+    color:red;
+}

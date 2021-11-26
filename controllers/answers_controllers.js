@@ -24,3 +24,13 @@ module.exports.create = async function(req, res){
             });
 
 }
+module.exports.destroy = async function(req,res){
+    mysqlConnection.query("DELETE from answer where Answer_id= ?",[req.params.id],(err,result)=>{
+        if(err){
+            console.log(`Cant delete the comment ${err}`);
+        }
+        req.flash('success', 'Answer deleted!');
+        return res.redirect('back');
+
+    });
+}

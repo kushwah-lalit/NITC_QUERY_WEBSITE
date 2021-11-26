@@ -23,3 +23,14 @@ module.exports.create = async function(req, res){
             });
 
 }
+module.exports.destroy = async function(req,res){
+    var sql = "DELETE FROM question where Question_id=?;DELETE FROM answer where Question_id=?";
+    mysqlConnection.query(sql, [req.params.id,req.params.id], function(err, data, fields) {
+        if(err){
+            console.log(`Cant delete the Question ${err}`);
+        }
+        req.flash('success', 'Questions And Associated Answers deleted!');
+        return res.redirect('back');
+    });
+
+}
