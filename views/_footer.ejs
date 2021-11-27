@@ -35,13 +35,15 @@
         }
     }
 </style>
-<footer class="footer">
-    <div class="icons">
-        <a href="http://www.nitc.ac.in/"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.linkedin.com/school/national-institute-of-technology-calicut/"><i class="fab fa-linkedin"></i></a>
-        <a href="https://www.instagram.com/nitcofficial/"><i class="fab fa-instagram"></i></a>
-        <p class="company-name">
-            NITC Query &copy; 2021, ALL Rights Reserved
-        </p>
-    </div>
-</footer>
+<%if(locals.user){%>
+    <footer class="footer">
+        <div class="icons">
+            <a href="http://www.nitc.ac.in/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/school/national-institute-of-technology-calicut/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/nitcofficial/"><i class="fab fa-instagram"></i></a>
+            <p class="company-name">
+                NITC Query &copy; 2021, ALL Rights Reserved
+            </p>
+        </div>
+    </footer>
+    <%}%>
