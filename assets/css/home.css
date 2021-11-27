@@ -450,6 +450,7 @@ body {
     box-shadow: 0 0.5em 0.5em -0.4em whitesmoke;
     transform: translateY(-0.25em);
     cursor: pointer;
+    background-color:#273b57;
 }
 
 .entry {
@@ -465,11 +466,16 @@ body {
 #special_button {
     margin-left: 10px;
 }
-
 .del {
     color: whitesmoke;
 }
 
 .del:hover {
     color: red;
+}
+body {
+    background-color: #273b57;
+    background-image: linear-gradient(0deg, #020024 0%, #090979 35%, #00d4ff 100%);
+
+
 }
