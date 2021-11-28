@@ -4,20 +4,19 @@ const router = express.Router();
 const passport = require('passport');
 
 const userController = require('../controllers/user_controllers');
-console.log('Router file working');
+console.log('Router file working user');
 // router.get('/profile/:id', passport.checkAuthentication,userController.profile);
 // router.post('/update/:id', passport.checkAuthentication,userController.update);
 router.get('/sign-up', userController.signUp);
 router.get('/sign-in', userController.signIn);
-router.post('/create', userController.create); 
+router.post('/create', userController.create);
 
 // usemiddleware to authenticate
-router.post('/create-session',passport.authenticate(
-    'local',
-    {failureRedirect: '/users/sign-in'}
-),userController.createSession);
+router.post('/create-session', passport.authenticate(
+    'local', { failureRedirect: '/users/sign-in' }
+), userController.createSession);
 // // sign out
 router.get('/sign-out', userController.destroySession);
-router.get('/verify-email',userController.verifyEmail);
+router.get('/verify-email', userController.verifyEmail);
 
-module.exports=router; 
+module.exports = router;

@@ -1,0 +1,143 @@
+<link rel="stylesheet" href='/css/home.css'>]
+<link rel="stylesheet" href='/css/profile.css'>
+<script src='/js/home.js'></script>
+
+<% if(locals.user){ %>
+    <div class="userinfo" style="padding-top: 50px;width: 50%;text-align: center;">
+        <p>
+            <%= name %>
+        </p>
+        <p>
+            <%= roll %>
+        </p>
+    </div>
+
+    <% } %>
+
+        <div class="userinfo" style="padding-top: 20px;width: 50%;text-align: center;">
+            <p>Questions Posted</p>
+        </div>
+        <% if(!locals.user){ %>
+            <br>
+            <br>
+            <%}%>
+                <% var d = new Date(); %>
+                    <%if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){%>
+                        <%if(data.Roll_Number == roll){%>
+                            <div class="container">
+                                <div class="response-group">
+                                    <header>
+                                        <h2>
+                                            <strong><%= data.Name%> | </strong>
+                                            <strong> <%= data.Roll_Number%></strong>
+
+                                            <i class="far fa-calendar-alt"></i><span><%= data.Creation_datetime %></span>
+                                            <% if (locals.user && locals.user.rollnum == data.Roll_Number){ %>
+                                                <a class="del" style="margin-left:0.5rem ;" href="/question/destroy/<%= data.Question_id %>"><i class="far fa-trash-alt"></i></a>
+                                                <% } %>
+
+                                        </h2>
+                                    </header>
+                                    <div class="response">
+                                        <div class="response__number">
+                                            <%= i%>
+                                        </div>
+                                        <h1 class="response__title">
+                                            <%= data.Content%>
+
+                                        </h1>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <% } %>
+                                <%i++;})%>
+                                    <% }else{ %>
+                                        <h1>No Question Asked :(</h1>
+                                        <%}%>
+
+
+                                            <div class="userinfo" style="padding-top: 20px;width: 50%;text-align: center;">
+                                                <p>Answers Posted</p>
+                                            </div>
+
+
+
+
+
+                                            <% var d = new Date(); %>
+                                                <%if(answer.length!=0){
+                                            var i=1;
+                                            answer.forEach(function(data){%>
+                                                    <%if(userData.length!=0){
+                                                var j=1;
+                                                    userData.forEach(function(dat){ 
+                                                    %>
+                                                        <%if(data.Roll_Number == roll){%>
+                                                            <%if(dat.Question_id == data.Question_id){%>
+                                                                <div class="container">
+                                                                    <div class="response-group">
+                                                                        <header>
+                                                                            <h2>
+                                                                                <strong><%= dat.Name%> | </strong>
+                                                                                <strong> <%= dat.Roll_Number%></strong>
+
+                                                                                <i class="far fa-calendar-alt"></i><span><%= dat.Creation_datetime %></span>
+                                                                                <% if (locals.user && locals.user.rollnum == dat.Roll_Number){ %>
+                                                                                    <a class="del" style="margin-left:0.5rem ;" href="/question/destroy/<%= data.Question_id %>"><i class="far fa-trash-alt"></i></a>
+                                                                                    <% } %>
+
+                                                                            </h2>
+                                                                        </header>
+                                                                        <div class="response">
+                                                                            <div class="response__number">
+                                                                                <%= i%>
+                                                                            </div>
+                                                                            <h1 class="response__title">
+                                                                                <%= dat.Content%>
+
+                                                                            </h1>
+                                                                        </div>
+
+                                                                        <div class="post-group">
+
+
+                                                                            <div class="post">
+                                                                                <div class="post__avatar">
+                                                                                </div>
+                                                                                <h3 class="post__author">
+                                                                                    <%=data.Name%>
+                                                                                        <span> | </span>
+                                                                                        <%=data.Roll_Number%>
+                                                                                            <% if (locals.user && locals.user.rollnum == data.Roll_Number){ %>
+                                                                                                <a class="del" style="margin-left:18rem ;" href="/answer/destroy/<%= data.Answer_id %>"><i class="far fa-trash-alt"></i></a>
+                                                                                                <% } %>
+
+                                                                                </h3>
+
+                                                                                <h4 class="post__timestamp">
+                                                                                    <i class="far fa-calendar-alt"></i>
+                                                                                    <%=data.Creation_datetime%>
+                                                                                </h4>
+                                                                                <p class="post__body">
+                                                                                    <%=data.Content%>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <%}%>
+                                                                    <%}%>
+                                                                        <%j++;})%>
+                                                                            <% }else{ %>
+                                                                                <h2>No Answers Found :(</h2>
+                                                                                <%}%>
+                                                                                    <%i++;})%>
+                                                                                        <% }else{ %>
+                                                                                            <h1>No Question Asked :(</h1>
+                                                                                            <%}%>
