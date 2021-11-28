@@ -3,19 +3,30 @@
 <script src='/js/home.js'></script>
 
 <% if(locals.user){ %>
-    <div class="userinfo" style="padding-top: 50px;width: 50%;text-align: center;">
-        <p>
+    <div class="userinfo" style="padding-top:20px;width: 30%;text-align: center;margin-top: 5rem; border: 2px white solid;border-radius: 50px; ">
+        <p style="font-size:2.5rem;font-weight: 250;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;">
+            <i class="far fa-user-circle"></i>
+            &nbsp
             <%= name %>
         </p>
-        <p>
+        <p style="font-size:1.5rem;font-weight: 250;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;">
+            <i class="fas fa-id-card-alt"></i>
+            &nbsp
             <%= roll %>
+        </p>
+        <p style="font-size:1.2rem;font-style:oblique;font-weight: 250;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;">
+            <i class="fas fa-at"></i>
+            &nbsp
+            <%= mail %>
         </p>
     </div>
 
     <% } %>
 
-        <div class="userinfo" style="padding-top: 20px;width: 50%;text-align: center;">
-            <p>Questions Posted</p>
+    <div class="userinfo" style="padding-top:20px;width: 50%;text-align: center;margin-top: 3rem; border: 1.5px white solid;border-radius:20px; ">
+     
+        <p style="font-size:1.2rem;font-style:oblique;font-weight: 250;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;">
+            <i class="fas fa-clone"></i>&nbsp Questions Posted</p>
         </div>
         <% if(!locals.user){ %>
             <br>
@@ -23,7 +34,7 @@
             <%}%>
                 <% var d = new Date(); %>
                     <%if(userData.length!=0){
-        var i=1;
+        var i=1,j=1;
         userData.forEach(function(data){%>
                         <%if(data.Roll_Number == roll){%>
                             <div class="container">
@@ -42,7 +53,8 @@
                                     </header>
                                     <div class="response">
                                         <div class="response__number">
-                                            <%= i%>
+                                            <%= j%>
+                                            <% j=j+1; %>
                                         </div>
                                         <h1 class="response__title">
                                             <%= data.Content%>
@@ -61,8 +73,10 @@
                                         <%}%>
 
 
-                                            <div class="userinfo" style="padding-top: 20px;width: 50%;text-align: center;">
-                                                <p>Answers Posted</p>
+                                        <div class="userinfo" style="padding-top:20px;width: 50%;text-align: center;border: 1.5px white solid;border-radius:20px; ">
+     
+                                        <p style="font-size:1.2rem;font-style:oblique;font-weight: 250;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;">
+                                             <i class="fas fa-comment-alt"></i>&nbsp Answers Posted</p>
                                             </div>
 
 
@@ -72,6 +86,7 @@
                                             <% var d = new Date(); %>
                                                 <%if(answer.length!=0){
                                             var i=1;
+                                            var k=1;
                                             answer.forEach(function(data){%>
                                                     <%if(userData.length!=0){
                                                 var j=1;
@@ -95,7 +110,8 @@
                                                                         </header>
                                                                         <div class="response">
                                                                             <div class="response__number">
-                                                                                <%= i%>
+                                                                                <%=k%>
+                                                                                <%k=k+1%>
                                                                             </div>
                                                                             <h1 class="response__title">
                                                                                 <%= dat.Content%>

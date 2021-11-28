@@ -6,6 +6,6 @@ module.exports.create = function(req, res) {
     mysqlConnection.query(sql, [1, 2], function(err, data, fields) {
         if (err)
             throw err;
-        return res.render('profile', { title: 'Profile Page', userData: data[0], answer: data[1], name: req.user.name, roll: req.user.rollnum });
+        return res.render('profile', { title: 'Profile Page', userData: data[0], answer: data[1], name: req.user.name, roll: req.user.rollnum, mail: req.user.email });
     });
 }

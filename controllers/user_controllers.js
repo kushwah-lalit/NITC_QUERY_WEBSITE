@@ -75,6 +75,7 @@ module.exports.create = function(req, res){
 
             });
         }else{
+            req.flash('error','User already exists');
             return res.redirect('back');
         }
     });
@@ -87,6 +88,7 @@ module.exports.verifyEmail = function(req,res){
         }
         if(result.length==0){
             console.log(`Cant verify as token is invalid`);
+            req.flash('error','Verified Failed');
             return res.redirect('/users/sign-up');
         }else{
             mysqlConnection.query('UPDATE user SET ? WHERE emailtoken = ?',[{emailtoken:null,isverified:1},req.query.token]);

@@ -29,8 +29,6 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(session({
     name: 'nitcquerywebsite',
-    // todo change secret before the deployment
-    // secret:'blahsomething',@@@
     secret: 'anything',
     saveUninitialized: false,
     resave: false,

@@ -12,6 +12,7 @@ module.exports.create = async function(req, res){
             mysqlConnection.query(sql,post,async function(err,result){
                 if(err){
                     console.log('question not created :: Error :',err);
+                    req.flash('error','Question not posted');
                     return;
                 }else{
                     console.log(result);
@@ -28,6 +29,7 @@ module.exports.destroy = async function(req,res){
     mysqlConnection.query(sql, [req.params.id,req.params.id], function(err, data, fields) {
         if(err){
             console.log(`Cant delete the Question ${err}`);
+            req.flash('error','Question not deleted');
         }
         req.flash('success', 'Questions And Associated Answers deleted!');
         return res.redirect('back');

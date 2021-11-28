@@ -5,6 +5,6 @@ const passport = require('passport');
 
 const profileController = require('../controllers/profile_controller');
 console.log('Router file working Profile');
-router.get('/profile', profileController.create);
+router.get('/profile', passport.checkAuthentication,profileController.create);
 
 module.exports = router;
