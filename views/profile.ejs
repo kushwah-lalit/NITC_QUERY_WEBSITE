@@ -53,15 +53,60 @@
                                     </header>
                                     <div class="response">
                                         <div class="response__number">
-                                            <%= j%>
-                                            <% j=j+1; %>
+                                            <%= i%>
                                         </div>
                                         <h1 class="response__title">
                                             <%= data.Content%>
-
+                                               
                                         </h1>
-
-
+                                        <%if(answer.length!=0){
+                                        var j=1;
+                                        answer.forEach(function(dat){ 
+                                        %>
+                                        <%if(dat.Question_id == data.Question_id){%>
+                                                <div class="post-group">
+            
+            
+                                                    <div class="post">
+                                                        <div class="post__avatar">
+                                                            
+                                                        </div>
+                                                        <h3 class="post__author">
+                                                            <%=dat.Name%>
+                                                            <span> | </span>
+                                                            <%=dat.Roll_Number%>
+                                                            <% if (locals.user && locals.user.rollnum == dat.Roll_Number){ %>
+                                                                <a  class="del" style="margin-left:18rem ;" href="/answer/destroy/<%= dat.Answer_id %>"><i class="far fa-trash-alt"></i></a><% } %>
+                                               
+                                                        </h3>
+                                                        
+                                                        <h4 class="post__timestamp">
+                                                            <i class="far fa-calendar-alt"></i>
+                                                            <%=dat.Creation_datetime%>
+                                                        </h4>
+                                                        <p class="post__body">
+                                                            <%=dat.Content%>
+                                                        </p>
+            
+                                                    </div>
+                                                </div>
+                                                <%}%>
+            
+                                                    <%j++;})%>
+                                                        <% }else{ %>
+                                                            <h2>No Answers Found :(</h2>
+                                                            <%}%>
+            
+            
+                                                                <% if(locals.user){ %>
+                                                                    <form action="/answer/create" method="post" style="margin-left:3.5rem;">
+                                                                        <input type="text" placeholder="Answer..." name="content" class="post__actions">
+            
+                                                                        <input type="hidden" name="post" value='<%= data.Question_id%>'>
+                                                                        <button class="enter" id="special_button" style="width:130px;background-color: #212529;">Answer</button>
+                                                                    </form>
+                                                                    <% } %>
+            
                                     </div>
                                 </div>
                             </div>
