@@ -9,11 +9,12 @@ The following Tech Stack is used for the project:
 
 | Name | Description |
 | ------------------------ | --------------------------------------------------------------------------------------------- |
-| **Front-End**         | HTML,CSS,Bootstrap                                                            |
+| **Front-End**         | HTML,CSS,Bootstrap |
 | **Back-End**                 | Node JS  |
-| **Database**                  | MySQL                               |
-| **Routing Module**        | Express 
-| **Config Module**      | Passport
+| **Database**                  | MySQL |
+| **Framework Module**        | Express |
+| **Authentication Module**      | Passport |
+  **Dynamic data in web pages Module**      | EJS |
 
 # Pre-requisites
 - Install [Node.js](https://nodejs.org/en/) version 8.0.0

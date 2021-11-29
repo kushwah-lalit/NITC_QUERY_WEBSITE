@@ -6,6 +6,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <!-- if user logged in then show profile btn and signout btn in navbar -->
             <%if(locals.user){%>
                 <li class="nav-item">
                     <a class="nav-link" style="font-size: 1.5rem;" href="/profile">Profile</a>
@@ -15,6 +16,7 @@
                 </li>
 
                 <%}else{%>
+                    <!-- if user logged out then show signin btn and signup btn in navbar -->
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 1.5rem;" href="/users/sign-in">Sign In</a>
                     </li>

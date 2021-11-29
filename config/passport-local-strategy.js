@@ -1,6 +1,10 @@
+// import passport
 const passport =require('passport');
+// import passport's local strategy
 const LocalStrategy =require('passport-local').Strategy;
+// sql Connection
 const mysqlConnection = require('../connection');
+// passport local stratedy
 passport.use(new LocalStrategy({
     // what is to be looked form the schema for the authentication 
     usernameField:'rollnum',
@@ -17,10 +21,12 @@ passport.use(new LocalStrategy({
                 console.log(`error while searching user in passort: ${err}`);
                 return done(err);
             }
+            // if logging in user enters wrong password
             if(result[0].password!=passwordField){
                 console.log("Wrong Password");
                 return done(null,false);
             }else{
+                // if correct password then check for verification status
                 if(result[0].isverified==1){
                     console.log(result[0]);
                     return done(null,result[0]);

@@ -1,4 +1,6 @@
+// import nysql
 const mysql = require('mysql');
+// cerate connection
 var mysqlConnection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -6,6 +8,7 @@ var mysqlConnection = mysql.createConnection({
     database: "DBMS_QUERY_WEBAPP",
     multipleStatements: true,
 });
+//  connect to DB with the credentials
 mysqlConnection.connect(function(err) {
     if (err) {
         console.log(`Error while connecting to DB ${err}`);
@@ -14,4 +17,5 @@ mysqlConnection.connect(function(err) {
     }
 
 });
+// export the connection
 module.exports = mysqlConnection;

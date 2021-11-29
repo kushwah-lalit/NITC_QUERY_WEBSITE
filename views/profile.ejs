@@ -1,7 +1,7 @@
 <link rel="stylesheet" href='/css/home.css'>]
 <link rel="stylesheet" href='/css/profile.css'>
 <script src='/js/home.js'></script>
-
+<!-- show the logged in user details -->
 <% if(locals.user){ %>
     <div class="userinfo" style="padding-top:20px;width: 30%;text-align: center;margin-top: 5rem; border: 2px white solid;border-radius: 50px; ">
         <p style="font-size:2.5rem;font-weight: 250;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;">
@@ -32,10 +32,12 @@
             <br>
             <br>
             <%}%>
+            <!-- nested loop to show the question posted by the logged in user also their corresponding answer to ease to see replies on one's question-->
                 <% var d = new Date(); %>
                     <%if(userData.length!=0){
         var i=1,j=1;
         userData.forEach(function(data){%>
+            <!-- check on question  that the question owner is logged in user -->
                         <%if(data.Roll_Number == roll){%>
                             <div class="container">
                                 <div class="response-group">
@@ -45,6 +47,7 @@
                                             <strong> <%= data.Roll_Number%></strong>
 
                                             <i class="far fa-calendar-alt"></i><span><%= data.Creation_datetime %></span>
+                                            <!-- allow only logged user to delete the question -->
                                             <% if (locals.user && locals.user.rollnum == data.Roll_Number){ %>
                                                 <a class="del" style="margin-left:0.5rem ;" href="/question/destroy/<%= data.Question_id %>"><i class="far fa-trash-alt"></i></a>
                                                 <% } %>
@@ -61,6 +64,7 @@
                                         </h1>
                                         <%if(answer.length!=0){
                                         var j=1;
+                                    <!-- to show the associated answer -->
                                         answer.forEach(function(dat){ 
                                         %>
                                         <%if(dat.Question_id == data.Question_id){%>
@@ -75,6 +79,7 @@
                                                             <%=dat.Name%>
                                                             <span> | </span>
                                                             <%=dat.Roll_Number%>
+                                                            <!-- allow to delete answer when logged in -->
                                                             <% if (locals.user && locals.user.rollnum == dat.Roll_Number){ %>
                                                                 <a  class="del" style="margin-left:18rem ;" href="/answer/destroy/<%= dat.Answer_id %>"><i class="far fa-trash-alt"></i></a><% } %>
                                                
@@ -98,15 +103,6 @@
                                                             <%}%>
             
             
-                                                                <% if(locals.user){ %>
-                                                                    <form action="/answer/create" method="post" style="margin-left:3.5rem;">
-                                                                        <input type="text" placeholder="Answer..." name="content" class="post__actions">
-            
-                                                                        <input type="hidden" name="post" value='<%= data.Question_id%>'>
-                                                                        <button class="enter" id="special_button" style="width:130px;background-color: #212529;">Answer</button>
-                                                                    </form>
-                                                                    <% } %>
-            
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +123,7 @@
 
 
 
-
+   <!-- nested loop to show all the questions where the logged in user answered the question -->
                                             <% var d = new Date(); %>
                                                 <%if(answer.length!=0){
                                             var i=1;
@@ -147,6 +143,7 @@
                                                                                 <strong> <%= dat.Roll_Number%></strong>
 
                                                                                 <i class="far fa-calendar-alt"></i><span><%= dat.Creation_datetime %></span>
+                                                                                <!-- allow to delete when user logged in -->
                                                                                 <% if (locals.user && locals.user.rollnum == dat.Roll_Number){ %>
                                                                                     <a class="del" style="margin-left:0.5rem ;" href="/question/destroy/<%= data.Question_id %>"><i class="far fa-trash-alt"></i></a>
                                                                                     <% } %>
@@ -174,6 +171,7 @@
                                                                                     <%=data.Name%>
                                                                                         <span> | </span>
                                                                                         <%=data.Roll_Number%>
+                                                                                        <!-- allow to delete when user logged in -->
                                                                                             <% if (locals.user && locals.user.rollnum == data.Roll_Number){ %>
                                                                                                 <a class="del" style="margin-left:18rem ;" href="/answer/destroy/<%= data.Answer_id %>"><i class="far fa-trash-alt"></i></a>
                                                                                                 <% } %>

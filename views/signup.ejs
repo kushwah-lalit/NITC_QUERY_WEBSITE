@@ -1,11 +1,14 @@
-
+<!-- the signup -->
     <link rel="stylesheet" href='/css/signup.css'>
 
         <div class="box">
+          <!-- all fields required -->
           <form class="box" action="/users/create" method="post">
             <h1>SIGN UP</h1>
             <input type="text" placeholder="Name" required name="name"/>
+            <!-- check that the mail entered is nitc mail -->
             <input type="email" placeholder="Enter NITC Email" required pattern="[a-z0-9._%+-]+@nitc.ac.in$" name="email"/> 
+            <!-- restricted the rollnumber to be 9 char input -->
             <input type="text" placeholder="NITC Roll Number" required maxlength="9" name="rollnum" />
             <input type="password" / placeholder="Password" required name="password">
             <input type="password" / placeholder="Confirm password" required name="confirm">
