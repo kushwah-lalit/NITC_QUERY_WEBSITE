@@ -9,12 +9,11 @@ The following Tech Stack is used for the project:
 
 | Name | Description |
 | ------------------------ | --------------------------------------------------------------------------------------------- |
-| **Front-End**         | HTML,CSS,Bootstrap |
+| **Front-End**         | HTML,CSS,Bootstrap                                                            |
 | **Back-End**                 | Node JS  |
-| **Database**                  | MySQL |
-| **Framework Module**        | Express |
-| **Authentication Module**      | Passport |
-  **Dynamic data in web pages Module**      | EJS |
+| **Database**                  | MySQL                               |
+| **Routing Module**        | Express 
+| **Config Module**      | Passport
 
 # Pre-requisites
 - Install [Node.js](https://nodejs.org/en/) version 8.0.0
@@ -54,12 +53,20 @@ The folder structure of this app is explained below:
 | package.json             | Contains npm dependencies.                                                |
 
 
-## Authors
+## User Interface
 
-- [@Himanshu Modi](https://github.com/modihimanshu36)
-- [@Kartik Shukla](https://github.com/kartiks-21)
-- [@Lalit Kushwah](https://github.com/kushwah-lalit)
-- [@Pratyush Aggarwal](https://github.com/PratyushAggarwal)
-- [@Suraj Sasikumar](https://github.com/surajsasikumar)
+**Sign Up**
 
-  
+![App Screenshot](https://media.discordapp.net/attachments/914015480040267796/915153426629918720/signup.png?width=975&height=566)
+
+**Login**
+
+![App Screenshot](https://media.discordapp.net/attachments/914015480040267796/915153671032037376/login.png?width=976&height=566)
+
+**Home Screen**
+
+![App Screenshot](https://media.discordapp.net/attachments/914015480040267796/915154095432695808/homescreen_userloggedin-1.png?width=974&height=566)
+
+**Profile Page**
+
+![App Screenshot](https://media.discordapp.net/attachments/914015480040267796/915154471246499900/userprofile-1.png?width=974&height=566)
