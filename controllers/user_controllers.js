@@ -1,7 +1,7 @@
 // import the sendgrid mailing engine
 const sgMail = require('@sendgrid/mail');
 // sendgrid api key for connection
-sgMail.setApiKey('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');
+sgMail.setApiKey('Enter Your SendGrid API');
 // crypto to generate the random unique encrypted keys
 const crypto = require('crypto');
 // sql connection
